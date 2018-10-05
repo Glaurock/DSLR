@@ -22,7 +22,7 @@ def main():
 
   for col in data:
     result[col] = utils.ft_calc(data[col])
-  result = result.astype(dtype='float64')
+  # result = result.astype(dtype='float64')
   
   print(result)
 
