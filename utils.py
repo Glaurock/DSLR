@@ -4,6 +4,9 @@ import csv
 import pandas as pd
 import numpy as np
 
+HOUSES_COL = 'Hogwarts House'
+HOUSES = ["Ravenclaw", "Slytherin", 'Gryffindor', "Hufflepuff"]
+
 def ft_std(col, mean, count):
     a = 0
 
