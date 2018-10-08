@@ -6,6 +6,7 @@ import numpy as np
 
 HOUSES_COL = 'Hogwarts House'
 HOUSES = ["Ravenclaw", "Slytherin", 'Gryffindor', "Hufflepuff"]
+SELECTED_FEATURES = ['Astronomy', 'Herbology', 'Charms', 'Flying']
 
 def ft_std(col, mean, count):
     a = 0

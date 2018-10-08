@@ -11,14 +11,14 @@ def main():
         sys.exit(1)
 
     df = utils.get_data(sys.argv[1])
-    df = df[['Hogwarts House', 'Astronomy', 'Herbology']]
+    df = df[utils.SELECTED_FEATURES + [utils.HOUSES_COL]]
     df.dropna(inplace=True) 
     
     ## create 1 or 0 for each class for one versus all 
     Y_list = {}
     for house in utils.HOUSES:
         Y_list[house] = (np.array([1 if elem == house else 0 for elem in df[utils.HOUSES_COL]]))
-    X = df[['Astronomy', 'Herbology']]
+    X = df[utils.SELECTED_FEATURES]
 
     oneForAll = OneForAll()
     oneForAll.fit(X, Y_list, True)
