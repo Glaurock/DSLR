@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    LogisticRegression.py                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/10/08 13:20:58 by gmonnier          #+#    #+#              #
+#    Updated: 2018/10/08 13:20:59 by gmonnier         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import pandas as pd
 import numpy as np
 
@@ -7,7 +19,7 @@ class LogisticRegression:
         self.lr = lr
         self.num_iter = num_iter
         self.fit_intercept = fit_intercept
-        self.verbose = verbose
+        self.verbose = verbose`
         self.normalize = normalize
         self.class_name = class_name
         
