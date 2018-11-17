@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:53 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/17 13:15:46 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 13:20:31 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,13 @@ def main():
     print('Usage: %s [dataset_train.csv]' % (sys.argv[0]))
     sys.exit(1)
 
-  df = utils.get_data(sys.argv[1])
-  courts = [elem for elem in df.columns.values.tolist() 
-  if elem not in [utils.HOUSES_COL, 'First Name', 'Last Name', 'Birthday', 'Best Hand']]
+  try:
+    df = utils.get_data(sys.argv[1])
+    courts = [elem for elem in df.columns.values.tolist() 
+    if elem not in [utils.HOUSES_COL, 'First Name', 'Last Name', 'Birthday', 'Best Hand']]
+  except Exception as e:
+      print("Error parsing input file, is it valid?")
+      sys.exit(1)
 
   i = 1
   fig = plt.figure(figsize=(15,10))

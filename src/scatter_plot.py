@@ -6,12 +6,12 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:20 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 14:18:18 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 14:34:15 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ##
-#   Revoir le display des graphs comme pour histograms 
+#   Revoir le display des graphs comme pour histograms
 ##
 
 import pandas as pd
@@ -22,23 +22,37 @@ import sys
 
 import utils
 
+def cut_str(string):
+    if len(string) > 10:
+        return string[:10] + ".."
+    else:
+        return string
+
 def main():
     if len(sys.argv) != 2:
         print('Usage: %s [dataset_train.csv]' % (sys.argv[0]))
         sys.exit(1)
-
-    df = utils.get_data(sys.argv[1])
-    features = [elem for elem in df.columns.values.tolist() 
-    if elem not in [utils.HOUSES_COL, 'First Name', 'Last Name', 'Birthday', 'Best Hand']]
+    try:
+        df = utils.get_data(sys.argv[1])
+        features = [elem for elem in df.columns.values.tolist() 
+        if elem not in [utils.HOUSES_COL, 'First Name', 'Last Name', 'Birthday', 'Best Hand']]
+    except Exception as e:
+        print("Error parsing input file, is it valid?")
+        sys.exit(1)
 
     comb = list(itertools.combinations(features, 2)) 
+    i = 1
+    fig = plt.figure(figsize=(20,14))
     for x_name, y_name in comb:
+        ax = fig.add_subplot(9, 9, i)
         x = df[x_name]
         y = df[y_name]
-        _ = plt.scatter(x, y)
-        plt.xlabel(x_name)
-        plt.ylabel(y_name)
-        plt.show()
+        _ = ax.scatter(x, y, s=5)
+        ax.set_xlabel(cut_str(x_name), fontsize=10)
+        ax.set_ylabel(cut_str(y_name))
+        i += 1
+    plt.tight_layout()
+    plt.show()
 
 if __name__ == "__main__":
   main()
