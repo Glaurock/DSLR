@@ -6,18 +6,13 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:53 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 14:17:40 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 13:15:46 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-##
-
-##
-## Revoir le display sur mac 
-## Display une legend
-##
-
-##
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 import utils
 import matplotlib.pyplot as plt
@@ -39,7 +34,8 @@ def plot_hist(court, df, fig, i):
     ax.set_ylabel('count')
     ax.set_xlabel('notes')
     ax.set_title(court)
-    # ax.legend(loc='upper right')
+    handles, labels = ax.get_legend_handles_labels()
+    return (handles, labels)
 
 def main():
   if len(sys.argv) != 2:
@@ -51,10 +47,15 @@ def main():
   if elem not in [utils.HOUSES_COL, 'First Name', 'Last Name', 'Birthday', 'Best Hand']]
 
   i = 1
-  fig = plt.figure()
-  for court in courts:
-      plot_hist(court, df, fig, i)
+  fig = plt.figure(figsize=(15,10))
+  try:
+    for court in courts:
+      handles, label = plot_hist(court, df, fig, i)
       i += 1
+  except Exception as e:
+      print("Error ploting histogram")
+      sys.exit(1)
+  fig.legend(handles, label, loc='lower right')
   plt.tight_layout()
   plt.show()
 
