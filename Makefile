@@ -6,7 +6,7 @@
 #    By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/17 12:53:46 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/17 13:22:13 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 14:36:14 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ histogram:
 
 scatterplot:
 	python3 src/scatter_plot.py ./resources/dataset_train.csv
+
+pairplot:
+	python3 src/pair_plot.py ./resources/dataset_train.csv
 
 clean:
 	rm -rf __pycache__
