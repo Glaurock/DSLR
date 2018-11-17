@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:36 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 13:20:37 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 15:31:17 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,5 +78,11 @@ def get_data(argv):
   except Exception as e:
     print(e)
     sys.exit(1)
-  
   return data
+
+def cut_str(string):
+  if len(string) > 10:
+    return string[:10] + ".."
+  else:
+    return string
+

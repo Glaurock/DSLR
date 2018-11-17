@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:17 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/17 14:52:23 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 15:45:36 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ import sys
 
 import utils
 
-HOUSES_COL = 'Hogwarts House'
+def cut_col(df):
+    df.columns = [utils.cut_str(col) for col in df.columns.values]
+    return df
 
 def main():
     if len(sys.argv) != 2:
@@ -27,7 +29,8 @@ def main():
     try:
         df = utils.get_data(sys.argv[1])
         df = df.fillna(0)
-        sns.pairplot(df, hue=HOUSES_COL, dropna=True, plot_kws={"s": 6}, height=1.75)
+        df = cut_col(df)
+        sns.pairplot(df, hue=utils.cut_str(utils.HOUSES_COL), dropna=True, plot_kws={"s": 6}, height=1.75)
         plt.tight_layout()
         plt.subplots_adjust(
                 left=0.04,
@@ -38,6 +41,7 @@ def main():
                 hspace=0.71)
         plt.show()
     except Exception as e:
+        print(e)
         print("Error trying to plot the pair plot")
         sys.exit(1)
     ## Herbology, Astronomy, Defense against dark
