@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:41 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 13:21:09 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 15:56:03 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,19 @@ def main():
         print('Usage: %s [dataset_train.csv]' % (sys.argv[0]))
         sys.exit(1)
 
-    df = utils.get_data(sys.argv[1])
-    df = df[utils.SELECTED_FEATURES + [utils.HOUSES_COL]]
-    df.dropna(inplace=True) 
-    
+    try:
+        df = utils.get_data(sys.argv[1])
+        df = df[utils.SELECTED_FEATURES + [utils.HOUSES_COL]]
+        df.dropna(inplace=True) 
+    except Exception as e:
+        print("Error parsing input file, is it valid?")
+        sys.exit(1)
+
     ## create 1 or 0 for each class for one versus all 
     Y_list = {}
     for house in utils.HOUSES:
-        Y_list[house] = (np.array([1 if elem == house else 0 for elem in df[utils.HOUSES_COL]]))
+        Y_list[house] = (np.array([1 if elem == house else 0
+            for elem in df[utils.HOUSES_COL]]))
     X = df[utils.SELECTED_FEATURES]
 
     oneForAll = OneForAll()

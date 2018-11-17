@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:13 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 13:21:14 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 15:55:40 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ class OneForAll:
             
     def __get_highest_proba(self):
         self.res = []
-        for a in list(zip(self.probas[0], self.probas[1], self.probas[2], self.probas[3])):
+        for a in list(zip(self.probas[0], self.probas[1],
+            self.probas[2], self.probas[3])):
             self.res.append(self.__get_index_max_proba(a))
             
     def fit(self, X, Y_list, verbose=False):
@@ -70,4 +71,4 @@ class OneForAll:
     def save_to_csv(self, file):
         df = pd.DataFrame(self.res, columns=[utils.HOUSES_COL])
         df.to_csv(file)
-        print("Predictions save to ", file)
+        print("Predictions save to", file)

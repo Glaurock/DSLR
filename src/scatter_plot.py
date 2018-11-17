@@ -6,13 +6,9 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:20 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/17 14:35:24 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 15:49:42 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-##
-#   Revoir le display des graphs comme pour histograms
-##
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -21,12 +17,6 @@ import itertools
 import sys
 
 import utils
-
-def cut_str(string):
-    if len(string) > 10:
-        return string[:10] + ".."
-    else:
-        return string
 
 def main():
     if len(sys.argv) != 2:
@@ -48,8 +38,8 @@ def main():
         x = df[x_name]
         y = df[y_name]
         _ = ax.scatter(x, y, s=5)
-        ax.set_xlabel(cut_str(x_name), fontsize=10)
-        ax.set_ylabel(cut_str(y_name))
+        ax.set_xlabel(utils.cut_str(x_name), fontsize=10)
+        ax.set_ylabel(utils.cut_str(y_name))
         i += 1
     plt.tight_layout()
     plt.show()

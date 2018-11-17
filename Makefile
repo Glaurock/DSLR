@@ -6,11 +6,13 @@
 #    By: gmonnier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/17 12:53:46 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/17 14:36:14 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/17 15:57:01 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
+all: install
+
+install:
 	pip3 install -r requirements.txt
 
 describe:
@@ -25,6 +27,14 @@ scatterplot:
 pairplot:
 	python3 src/pair_plot.py ./resources/dataset_train.csv
 
+train:
+	python3 src/logreg_train.py ./resources/dataset_train.csv
+
+predict:
+	python3 src/logreg_predict.py ./resources/dataset_test.csv .parameters.json
+
 clean:
+	rm .parameters.json
+	rm houses.csv
 	rm -rf __pycache__
 	rm -rf src/__pycache__/
