@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:13 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/19 12:15:13 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 13:46:24 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ import pandas as pd
 import numpy as np
 from itertools import combinations
 import json
+import sys
 import matplotlib.pyplot as plt
 
 import utils
@@ -57,13 +58,19 @@ class OneForAll:
             print("Parameters save to '.parameters.json'")
 
     def load_parameters(self, file):
-        with open(file, 'r') as f:
-            data = json.load(f)
-        for key, thetas in data.items():
-            log = LogisticRegression(key)
-            log.theta = np.array(thetas)
-            self.log_list.append(log)
-        print("Parameters loaded, ready to predict")
+        try:
+            with open(file, 'r') as f:
+                data = json.load(f)
+            for key, thetas in data.items():
+                log = LogisticRegression(key)
+                log.theta = np.array(thetas)
+                self.log_list.append(log)
+            print("Parameters loaded, ready to predict")
+        except Exception as e:
+            print(e)
+            print("Error loading parameters, run or rerun learning first")
+            sys.exit(1)
+
 
     def predict(self, X):
         for index, log in enumerate(self.log_list):

@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:29 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 13:20:29 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 13:47:20 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,15 @@ def main():
         print('Usage: %s [dataset_test.csv] [.parameters.json]' % (sys.argv[0]))
         sys.exit(1)
 
-    df = utils.get_data(sys.argv[1])
-    df = df[utils.SELECTED_FEATURES + [utils.HOUSES_COL]]
-    df.fillna(0, inplace=True)
-
-    X = df[utils.SELECTED_FEATURES]
+    try:
+        df = utils.get_data(sys.argv[1])
+        df = df[utils.SELECTED_FEATURES + [utils.HOUSES_COL]]
+        df.fillna(0, inplace=True)
+        X = df[utils.SELECTED_FEATURES]
+    except Exception as e:
+        print(e)
+        print("Error parsing dataset")
+        sys.exit(1)
 
     oneForAll = OneForAll()
     oneForAll.load_parameters(sys.argv[2])
