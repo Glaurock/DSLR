@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:29 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 13:20:29 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 12:50:16 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ def main():
     df.fillna(0, inplace=True)
 
     X = df[utils.SELECTED_FEATURES]
+
+    print(X.shape)
 
     oneForAll = OneForAll()
     oneForAll.load_parameters(sys.argv[2])
