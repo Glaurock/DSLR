@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:20 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/17 15:49:42 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 11:58:54 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ def main():
         ax = fig.add_subplot(9, 9, i)
         x = df[x_name]
         y = df[y_name]
-        _ = ax.scatter(x, y, s=5)
+        _ = ax.scatter(x, y, s=0.25)
         ax.set_xlabel(utils.cut_str(x_name), fontsize=10)
         ax.set_ylabel(utils.cut_str(y_name))
         i += 1
