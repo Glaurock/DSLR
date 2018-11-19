@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:21:13 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/18 10:15:05 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 12:15:13 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,4 +82,7 @@ class OneForAll:
         x_axis = np.arange(0, self.log_list[0].num_iter)
         for log in self.log_list:
             plt.plot(x_axis, log.loss_curve)
+        plt.xlabel("number of iteration")
+        plt.ylabel("Loss")
+        plt.title("Loss for each logistic regression")
         plt.show()

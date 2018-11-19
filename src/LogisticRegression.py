@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:58 by gmonnier          #+#    #+#              #
-#    Updated: 2018/11/18 10:16:58 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 12:14:46 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class LogisticRegression:
-    def __init__(self, class_name, lr, num_iter, 
+    def __init__(self, class_name, lr=0.01, num_iter=10000,
     fit_intercept=True, verbose=False, normalize=True, plot=False, scatter=False):
         self.lr = lr if lr is not None else 0.01
         self.num_iter = num_iter if num_iter is not None else 100000
@@ -68,12 +68,12 @@ class LogisticRegression:
                 h = self.__sigmoid(z)
                 self.loss_curve.append(self.__loss(h, y))
 
-            if(self.verbose == True and i % 10000 == 0):
+            if(self.verbose == True and i % (self.num_iter / 10) == 0):
                 z = np.dot(X, self.theta)
                 h = self.__sigmoid(z)
                 print(f'loss: {self.__loss(h, y)} \t')
 
-            if (self.scatter and i % 10000 == 0):
+            if (self.scatter and i % (self.num_iter / 10) == 0):
                 y_pred = self.predict(X[:,1:])
                 plt.scatter(X[:,1], X[:,2],c=y_pred)
                 plt.show(block=False)
@@ -94,8 +94,3 @@ class LogisticRegression:
             X = self.__normalize(X)
         return self.predict_prob(X) >= threshold
 
-
-    # def plot_loss_curve(self):
-    #     x_axis = np.arange(0, self.num_iter)
-    #     plt.plot(x_axis, self.loss_curve)
-    #     plt.show()

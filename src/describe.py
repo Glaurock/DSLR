@@ -6,7 +6,7 @@
 #    By: gmonnier <gmonnier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 13:20:48 by gmonnier          #+#    #+#              #
-#    Updated: 2018/10/08 13:20:48 by gmonnier         ###   ########.fr        #
+#    Updated: 2018/11/19 11:56:20 by gmonnier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,7 @@ def main():
 
   for col in data:
     result[col] = utils.ft_calc(data[col])
-  # result = result.astype(dtype='float64')
-  
+
   print(result)
 
 if __name__ == "__main__":
